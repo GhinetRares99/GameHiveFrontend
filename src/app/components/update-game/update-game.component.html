@@ -1,0 +1,58 @@
+<app-menu></app-menu>
+<div class="update-game-container">
+    <h1 id="title-update-game">UPDATE GAME</h1>
+    <form class="inner-form-update-game" [formGroup]="updateGameForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" placeholder="Name" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" class="form-control" placeholder="Description" formControlName="description">
+        </div>
+        <div class="form-group">
+            <label>Genre:</label>
+            <input type="text" class="form-control" placeholder="Genre" formControlName="genre">
+        </div>
+        <div class="form-group">
+            <label>Price:</label>
+            <input type="number" class="form-control" placeholder="Price" formControlName="price">
+        </div>
+        <div class="form-group">
+            <label>Minimum Supported OS:</label>
+            <input type="text" class="form-control" placeholder="Minimum Supported OS" formControlName="minimumSupportedOS">
+        </div>
+        <div class="form-group">
+            <label>Minimum Supported Graphics Card:</label>
+            <input type="text" class="form-control" placeholder="Minimum Supported Graphics Card" formControlName="minimumSupportedGraphicsCard">
+        </div>
+        <div class="form-group">
+            <label>Minimum Supported Processor:</label>
+            <input type="text" class="form-control" placeholder="Minimum Supported Processor" formControlName="minimumSupportedProcessor">
+        </div>
+        <div class="form-group">
+            <label>Minimum Supported Memory:</label>
+            <input type="text" class="form-control" placeholder="Minimum Supported Memory" formControlName="minimumSupportedMemory">
+        </div>
+        <div class="form-group">
+            <label>Storage:</label>
+            <input type="text" class="form-control" placeholder="Storage" formControlName="storage">
+        </div>
+        <div class="form-group">
+            <label>Picture One:</label>
+            <input type="file" class="form-control" (change)="onFileChangeOne($event)" formControlName="pictureOne" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label>Picture Two:</label>
+            <input type="file" class="form-control" (change)="onFileChangeTwo($event)" formControlName="pictureTwo" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label>Picture Three:</label>
+            <input type="file" class="form-control" (change)="onFileChangeThree($event)" formControlName="pictureThree" accept="image/*">
+        </div>
+        <div class="buttons">
+            <button type="submit" class="submit-button">Update</button>
+            <button class="cancel-button" (click)="navigateToAdmin()">Cancel</button> 
+        </div>
+    </form>
+</div>

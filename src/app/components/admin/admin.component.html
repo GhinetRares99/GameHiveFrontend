@@ -1,0 +1,97 @@
+<app-menu></app-menu>
+
+<div class="cycle-div">
+    <select class="cycle form-control" [(ngModel)]="selectedOption">
+        <option value="games">Games</option>
+        <option value="users">Users</option>
+        <option value="trophies">Trophies</option>
+    </select>    
+</div>
+
+<div *ngIf="selectedOption == 'games'" class="games-div">
+    <div class="add-div">
+        <button class="add-button" (click)="navigateToAddGame()">Add</button>
+    </div>
+    <div class="games-container">
+        <div class="no-games" *ngIf="games.length === 0">
+            <h1>No games found!</h1>
+        </div>
+        <div class="game-card" *ngFor="let game of games">
+            <div class="game-image-div">
+                <img [src]="'game-images/' + game.picOne" class="game-image">
+            </div>
+            <div class="details-div-one">
+                <p class="game-details">Id: {{game.id}}</p>
+                <p class="game-details">Name: {{game.name}}</p>
+                <p class="game-details">Description: {{game.description}}</p>
+                <p class="game-details">Genre: {{game.genre}}</p>
+                <p class="game-details">Price: {{game.price}}€</p>
+            </div>
+            <div class="details-div-two">
+                <p class="game-details">Minimum Supported Graphics Card: {{game.minimumSupportedGraphicsCard}}</p>
+                <p class="game-details">Minimum Supported Memory: {{game.minimumSupportedMemory}}</p>
+                <p class="game-details">Minimum Supported OS: {{game.minimumSupportedOS}}</p>
+                <p class="game-details">Minimum Supported Processor: {{game.minimumSupportedProcessor}}</p>
+                <p class="game-details">Minimum Supported Storage: {{game.storage}}</p>
+            </div>
+            <div class="buttons">
+                <button class="edit-button" (click)="navigateToUpdateGame(game.name)">Edit</button>
+                <button class="delete-button" (click)="deleteGameById(game.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="selectedOption == 'users'" class="users-div">
+    <div class="users-container">
+        <div class="no-users" *ngIf="users.length === 0">
+            <h1>No users found!</h1>
+        </div>
+        <div class="user-card" *ngFor="let user of users">
+            <div class="user-image-div">
+                <img [src]="'user-images/' + user.profilePic" class="user-image">
+            </div>
+            <div class="details-div-one-user">
+                <p class="user-details">Id: {{user.id}}</p>
+                <p class="user-details">Email: {{user.email}}</p>
+                <p class="user-details">Username: {{user.username}}</p>
+                <p class="user-details">Country of Residence: {{user.countryOfResidence}}</p>
+                <p class="user-details">Balance: {{user.balance}}€</p>
+            </div>
+            <div class="details-div-two-user">
+                <p class="user-details">Role: {{user.role}}</p>
+                <p class="user-details">Status: {{user.status}}</p>
+            </div>
+            <div class="buttons">
+                <button class="edit-button" (click)="navigateToUpdateUserAdmin(user.username)">Edit</button>
+                <button class="delete-button" (click)="deleteUserById(user.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="selectedOption == 'trophies'" class="trophies-div">
+    <div class="add-div">
+        <button class="add-button" (click)="navigateToAddTrophy()">Add</button>
+    </div>
+    <div class="trophies-container">
+        <div class="no-trophies" *ngIf="trophies.length === 0">
+            <h1>No trophies found!</h1>
+        </div>
+        <div class="trophy-card" *ngFor="let trophy of trophies">
+            <div class="trophy-image-div">
+                <img [src]="'trophy-images/' + trophy.iconUrl" class="trophy-image">
+            </div>
+            <div class="details-div-one-trophy">
+                <p class="trophy-details">Id: {{trophy.id}}</p>
+                <p class="trophy-details">Game Id: {{trophy.gameId}}</p>
+                <p class="trophy-details">Name: {{trophy.name}}</p>
+                <p class="trophy-details">Description: {{trophy.description}}</p>
+            </div>
+            <div class="buttons">
+                <button class="edit-button" (click)="navigateToUpdateTrophy(trophy.name)">Edit</button>
+                <button class="delete-button" (click)="deleteTrophyById(trophy.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<app-menu></app-menu>
+<div class="filters">
+    <input class="name-filter" type="text" placeholder="Filter by name" [(ngModel)]="nameFilter" />
+</div>
+<div class="my-games-container">
+    <div class="no-games" *ngIf="games.length === 0">
+        <h1>You have not purchased any games!</h1>
+    </div>
+    <div class="game-card" *ngFor="let game of games | nameFilter: nameFilter">
+        <div class="image-div">
+            <img [src]="'game-images/' + game.picOne" class="game-image">
+        </div>
+        <div class="details-div">
+            <h1 class="game-name">{{game.name.toUpperCase()}}</h1>
+            <p class="game-details">Genre: {{game.genre}}</p>
+            <button class="see-more-button" (click)="navigateToSeeMore(game.name)">See more</button>
+        </div>
+    </div>
+</div>

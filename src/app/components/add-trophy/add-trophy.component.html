@@ -1,0 +1,28 @@
+<app-menu></app-menu>
+<div class="add-trophy-container">
+    <h1 id="title-add-trophy">ADD TROPHY</h1>
+    <form [formGroup]="addTrophyForm" (ngSubmit)="onSubmit()">
+        <div class="inner-form-add-trophy">
+            <div class="form-group">
+                <label>Game Id:</label>
+                <input type="text" class="form-control" placeholder="Game Id" formControlName="gameId">
+            </div>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" class="form-control" placeholder="Name" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label>Description:</label>
+                <input type="text" class="form-control" placeholder="Description" formControlName="description">
+            </div>
+            <div class="form-group">
+                <label>Icon URL:</label>
+                <input type="file" class="form-control" (change)="onFileChange($event)" formControlName="iconUrl" accept="image/*">
+            </div>
+            <div class="buttons">
+                <button type="submit" class="submit-button">Add trophy</button>
+                <button class="cancel-button" (click)="navigateToAdmin()">Cancel</button> 
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,61 @@
+<app-menu></app-menu>
+<div class="see-more-container">
+    <h1 class="game-title">{{game?.name}}</h1>
+    <div id="animatedGallery" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img [src]="'game-images/' + game?.picOne" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img [src]="'game-images/' + game?.picTwo" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img [src]="'game-images/' + game?.picThree" class="d-block w-100">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#animatedGallery" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#animatedGallery" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="game-details">
+        <p class="detail">Description: {{game?.description}}</p>
+        <p class="detail">Genre: {{game?.genre}}</p>
+    </div>
+    <div class="actions">
+        <div class="actions-one">
+            <button class="install-button" *ngIf="!isInstalled" (click)="installGame()">Install</button>
+        </div>
+        <div class="actions-two" *ngIf="isInstalled">
+            <button class="play-button" *ngIf="!isPlaying" (click)="playGame()">Play</button>
+            <button class="stop-button" *ngIf="isPlaying" (click)="stopGame()">Stop</button>
+            <button class="uninstall-button" (click)="uninstallGame()">Uninstall</button>
+        </div>
+    </div>
+    <div class="requirements">
+        <p class="detail">Minimum Supported OS: {{game?.minimumSupportedOS}}</p>
+        <p class="detail">Minimum Supported Graphics Card: {{game?.minimumSupportedGraphicsCard}}</p>
+        <p class="detail">Minimum Supported Processor: {{game?.minimumSupportedProcessor}}</p>
+        <p class="detail">Minimum Supported Memory: {{game?.minimumSupportedMemory}}</p>
+        <p class="detail">Storage: {{game?.storage}}</p>
+    </div>
+    <div class="trophies-toggle-buttons">
+        <button class="toggle-button" *ngIf="!areTrophiesShown" (click)="showTrophies()">Show trophies</button>
+        <button class="toggle-button" *ngIf="areTrophiesShown" (click)="hideTrophies()">Hide trophies</button>
+    </div>
+    <div class="trophies" *ngIf="areTrophiesShown">
+        <div class="trophy-card" *ngFor="let trophy of trophies">
+            <div class="trophy-image-div">
+                <img [src]="'trophy-images/' + trophy.iconUrl" class="trophy-image">
+            </div>
+            <div class="trophy-details-div">
+                <p class="trophy-details">Name: {{trophy.name}}</p>
+                <p class="trophy-details">Description: {{trophy.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

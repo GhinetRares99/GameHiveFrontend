@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+<div class="filters">
+    <input class="name-filter" type="text" placeholder="Filter by name" [(ngModel)]="nameFilter" />
+    <select class="genre-filter form-control" [(ngModel)]="genreFilter">
+        <option value="">No filter</option>
+        <option value="Open World">Open World</option>
+        <option value="Simulation">Simulation</option>
+        <option value="FPs">FPS</option>
+        <option value="MMORPG">MMORPG</option>
+        <option value="Third Person">Third Person</option>
+        <option value="Racing">Racing</option>
+    </select>
+    <input class="price-filter" type="number" placeholder="Max price" [(ngModel)]="priceFilter" />
+</div>
+<div class="shop-container">
+    <div class="no-games" *ngIf="games.length === 0">
+        <h1>There are no games in the store!</h1>
+    </div>
+    <div class="game-card" *ngFor="let game of games | nameFilter: nameFilter | genreFilter: genreFilter | priceFilter: priceFilter">
+        <div class="image-div">
+            <img [src]="'game-images/' + game.picOne" class="game-image">
+        </div>
+        <div class="details-div">
+            <h1 class="game-name">{{game.name.toUpperCase()}}</h1>
+            <p class="game-details">Genre: {{game.genre}}</p>
+            <p class="game-details">Price: {{game.price}}€</p>
+            <button class="see-more-button" (click)="navigateToSeeMoreShop(game.name)">See more</button>
+        </div>
+    </div>
+</div>

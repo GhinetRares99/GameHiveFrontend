@@ -1,0 +1,16 @@
+<div class="menu-container">
+    <span class="name" (click)="navigateToHome()">GAMEHIVE</span>
+    <button class="shop-button" (click)="navigateToShop()">SHOP</button>
+    <div *ngIf="userToken != null" class="div-one">
+        <button class="my-games-button" (click)="navigateToMyGames()">MY GAMES</button>
+        <button class="admin-button" (click)="navigateToAdmin()" *ngIf="userRole == 'Admin'">ADMIN</button>
+    </div>
+    <div class="div-two" *ngIf="userToken == null" >
+        <button class="sign-in-button" (click)="navigateToSignIn()">SIGN IN</button>
+        <button class="sign-up-button" (click)="navigateToSignUp()">SIGN UP</button>
+    </div>
+    <div *ngIf="userToken != null" class="div-three">
+        <button class="account-button" (click)="navigateToAccount()">{{user?.username}} <img class="menu-pfp" [src]="'user-images/' + user?.profilePic"></button>
+        <button class="sign-out-button" (click)="signOut()">SIGN OUT</button>
+    </div>
+</div>

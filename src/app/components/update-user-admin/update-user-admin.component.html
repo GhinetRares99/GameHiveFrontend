@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+<div class="update-user-admin-container">
+    <h1 id="title-update-user-admin">UPDATE USER</h1>
+    <form class="inner-form-update-user-admin" [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Role:</label>
+            <select class="form-control" formControlName="role">
+                <option value="Client">Client</option>
+                <option value="Admin">Admin</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Status:</label>
+            <select class="form-control" formControlName="status">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="submit-button">Update</button>
+            <button class="cancel-button" (click)="navigateToAdmin()">Cancel</button> 
+        </div>
+    </form>
+</div>

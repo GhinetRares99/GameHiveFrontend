@@ -1,0 +1,108 @@
+.account-container {
+    margin-top: 100px;
+    background-color: rgb(31, 38, 66);
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    padding: 20px;
+    display: grid;
+}
+
+.user-image {
+    margin-bottom: 10px;
+}
+
+.username {
+    color: white;
+    font-style: italic;
+    font-size: x-large;
+    font-weight: 700;
+}
+
+.account-details {
+    color: white;
+    font-size: medium;
+}
+
+.account-div-one {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.account-div-two {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.account-div-three {
+    grid-column: 3;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-balance-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: darkgreen;
+    font-size: medium;
+    transition-duration: 0.3s;
+    width: 60%;
+
+    &:hover {
+        background-color:rgb(0, 122, 0);
+    }
+}
+
+.update-user-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: darkgreen;
+    font-size: medium;
+    transition-duration: 0.3s;
+    width: 60%;
+
+    &:hover {
+        background-color:rgb(0, 122, 0);
+    }
+}
+
+.change-password-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: darkgreen;
+    font-size: medium;
+    transition-duration: 0.3s;
+    width: 60%;
+
+    &:hover {
+        background-color:rgb(0, 122, 0);
+    }
+}
+
+.delete-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: darkred;
+    font-size: medium;
+    transition-duration: 0.3s;
+    width: 60%;
+
+    &:hover {
+        background-color:rgb(165, 0, 0);
+    }
+}

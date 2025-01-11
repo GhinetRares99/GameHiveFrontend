@@ -1,0 +1,43 @@
+#title-after-sign-up {
+    color: white;
+    font-family: Trebuchet MS;
+    font-style: italic;
+    text-align: center;
+}
+
+.after-sign-up-container {
+    margin-top: 100px;
+    background-color: rgb(31, 38, 66);
+    width: 60%;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+}
+
+.after-sign-up-text {
+    color: white;
+    font-size: medium;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.button {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.continue-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    background-color: darkgreen;
+    color: white;
+    font-size: medium;
+    transition-duration: 0.3s;
+
+    &:hover {
+        background-color:rgb(0, 122, 0);
+    }
+}
