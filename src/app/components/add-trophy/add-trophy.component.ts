@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { AddTrophyService } from '../../services/add-trophy.service';
 import { Router } from '@angular/router';
 import { Trophy } from '../../models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-trophy',
@@ -17,7 +18,7 @@ export class AddTrophyComponent {
   addTrophyForm: FormGroup;
   selectedFile: File | null = null;
 
-  constructor(private router: Router, private fb: FormBuilder, private addTrophyService: AddTrophyService) {
+  constructor(private router: Router, private fb: FormBuilder, private addTrophyService: AddTrophyService, private toastr: ToastrService) {
     this.addTrophyForm = this.fb.group({
       gameId: ['', Validators.required],
       name: ['', Validators.required],
@@ -63,6 +64,21 @@ export class AddTrophyComponent {
           this.router.navigate(['/admin']);
         }
 
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
+        }
+
+        if(response.status == 401 || response.status == 403)
+        {
+          this.router.navigate(['/signin']);
+        }
+
       } catch (error) {
         console.error('Add-trophy error: ', error);
       }
@@ -70,7 +86,7 @@ export class AddTrophyComponent {
     }
     else
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 }

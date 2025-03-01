@@ -6,6 +6,7 @@ import { Trophy } from '../../models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UpdateTrophyService } from '../../services/update-trophy.service';
 import { GetTrophyByNameService } from '../../services/get-trophy-by-name.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-trophy',
@@ -19,7 +20,7 @@ export class UpdateTrophyComponent {
   trophy: Trophy | null | undefined;
   selectedFile: File | null = null;
 
-  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private updateTrophyService: UpdateTrophyService, private getTrophyByNameService: GetTrophyByNameService) {
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private updateTrophyService: UpdateTrophyService, private getTrophyByNameService: GetTrophyByNameService, private toastr: ToastrService) {
     this.updateTrophyForm = this.fb.group({
       gameId: ['', Validators.required],
       name: ['', Validators.required],
@@ -70,11 +71,25 @@ export class UpdateTrophyComponent {
 
       try {
         const response = await this.updateTrophyService.updateTrophy(newTrophyData);
-        console.log(response.json());
 
         if(response.status == 200)
         {
           this.router.navigate(['/admin']);
+        }
+
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
+        }
+
+        if(response.status == 401 || response.status == 403)
+        {
+          this.router.navigate(['/signin']);
         }
 
       } catch (error) {
@@ -83,7 +98,7 @@ export class UpdateTrophyComponent {
     }
     else
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 

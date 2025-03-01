@@ -40,15 +40,30 @@ export class AdminComponent {
 
       this.games = responseGames;
 
+      if(responseGames.status == 401 || responseGames.status == 403)
+      {
+        this.router.navigate(['/signin']);
+      }
+
       const responseUsers = await this.getAllUsersService.getAllUsers();
       console.log(responseUsers);
 
       this.users = responseUsers;
 
+      if(responseUsers.status == 401 || responseUsers.status == 403)
+      {
+        this.router.navigate(['/signin']);
+      }
+
       const responseTrophies = await this.getAllTrophiesService.getAllTrophies();
       console.log(responseTrophies);
 
       this.trophies = responseTrophies;
+
+      if(responseTrophies.status == 401 || responseTrophies.status == 403)
+      {
+        this.router.navigate(['/signin']);
+      }
     } catch (error) {
       console.error('Admin error: ', error);
     }

@@ -14,6 +14,11 @@
             <h1 class="game-name">{{game.name.toUpperCase()}}</h1>
             <p class="game-details">Genre: {{game.genre}}</p>
             <button class="see-more-button" (click)="navigateToSeeMore(game.name)">See more</button>
+            <button class="remove-from-library-button" (click)="showRemovePossessionPopup(game.id)">Remove</button>
         </div>
     </div>
+</div>
+
+<div *ngIf="isRemovePossessionPopupVisible" class="popup-overlay">
+    <app-remove-possession-popup [userId]="currentUserId" [gameId]="selectedGameId" (close)="closeRemovePossessionPopup()"></app-remove-possession-popup>
 </div>

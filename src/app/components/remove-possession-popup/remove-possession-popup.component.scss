@@ -1,28 +1,25 @@
-#title-update-user {
+#title-remove-possession-popup {
     color: white;
     font-family: Trebuchet MS;
     font-style: italic;
     text-align: center;
 }
 
-.update-user-container {
+.remove-possession-popup-container {
     margin-top: 100px;
     background-color: rgb(31, 38, 66);
-    width: 50%;
+    width: 60%;
     padding: 30px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 25px;
 }
 
-label {
+#warning-text {
     color: white;
-}
-
-.form-group {
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+    font-family: Trebuchet MS;
+    font-style: italic;
+    text-align: center;
 }
 
 .buttons {
@@ -30,7 +27,7 @@ label {
     text-align: center;
 }
 
-.submit-button {
+.proceed-button {
     border: none;
     outline: none;
     cursor: pointer;
@@ -58,9 +55,5 @@ label {
 
     &:hover {
         background-color:rgb(165, 0, 0);
-    }
-
-    @media (max-width: 800px) {
-        margin-left: 10px;
     }
 }

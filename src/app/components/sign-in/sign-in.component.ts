@@ -3,6 +3,7 @@ import { MenuComponent } from '../menu/menu.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignInService } from '../../services/sign-in.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +15,7 @@ import { SignInService } from '../../services/sign-in.service';
 export class SignInComponent {
   signInForm: FormGroup;
 
-  constructor(private router: Router, private fb: FormBuilder, private signInService: SignInService) {
+  constructor(private router: Router, private fb: FormBuilder, private signInService: SignInService, private toastr: ToastrService) {
     this.signInForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -27,8 +28,6 @@ export class SignInComponent {
 
       try {
         const response = await this.signInService.signInUser(loginData);
-        console.log(response.json());
-        console.log('Token: ', response.headers.get("Authorization"));
 
         if(response.status == 200)
         { 
@@ -47,6 +46,16 @@ export class SignInComponent {
 
           this.router.navigate(['']);
         }
+
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
+        }
   
       } catch (error) {
         console.error('Sign-in error: ', error);
@@ -54,7 +63,7 @@ export class SignInComponent {
     }
     else 
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 

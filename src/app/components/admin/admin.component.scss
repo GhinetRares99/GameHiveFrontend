@@ -43,6 +43,11 @@
     &:hover {
         transform: scale(1.04);
     }
+
+    @media (max-width: 600px) {
+        display: block;
+        text-align: center;
+    }
 }
 
 .game-image-div {
@@ -66,6 +71,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media (max-width: 1100px) {
+        grid-column: 1;
+        grid-row: 4;
+    }
 }
 
 .game-details {
@@ -163,6 +173,11 @@
     &:hover {
         transform: scale(1.04);
     }
+
+    @media (max-width: 600px) {
+        display: block;
+        text-align: center;
+    }
 }
 
 .user-details {
@@ -224,6 +239,11 @@
     &:hover {
         transform: scale(1.04);
     }
+
+    @media (max-width: 600px) {
+        display: block;
+        text-align: center;
+    }
 }
 
 .trophy-details {
@@ -239,6 +259,11 @@
 .details-div-one-trophy {
     grid-column: 2;
     grid-row: 1;
+
+    @media (max-width: 600px) {
+        grid-column: 1;
+        grid-row: 2;
+    }
 }
 
 .no-trophies {

@@ -1,6 +1,10 @@
 .game-image {
     width: 250px;
     height: 150px;
+
+    @media (max-width: 500px) {
+        width: 220px;
+    }
 }
 
 .my-games-container {
@@ -22,6 +26,11 @@
     &:hover {
         transform: scale(1.04);
     }
+
+    @media (max-width: 800px) {
+        display: block;
+        text-align: center;
+    }
 }
 
 .game-details {
@@ -36,13 +45,16 @@
 .image-div{
     grid-column: 1;
     grid-row: 1;
-
 }
 
 .details-div{
     text-align: right;
     grid-column: 2;
     grid-row: 1;
+
+    @media (max-width: 800px) {
+        text-align: center;
+    }
 }
 
 .see-more-button {
@@ -86,4 +98,33 @@
     width: 60%;
     border-radius: 25px;
     padding: 10px;
+}
+
+.remove-from-library-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    background-color: darkred;
+    color: white;
+    font-size: medium;
+    transition-duration: 0.3s;
+    margin-left: 10px;
+
+    &:hover {
+        background-color:rgb(165, 0, 0);
+    }
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }

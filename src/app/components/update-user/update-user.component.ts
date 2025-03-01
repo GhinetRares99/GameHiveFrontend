@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UpdateUserService } from '../../services/update-user.service';
 import { GetUserService } from '../../services/get-user.service';
 import { User } from '../../models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-user',
@@ -20,7 +21,7 @@ export class UpdateUserComponent {
   initialEmail: string | undefined;
   @Output() close = new EventEmitter<void>();
 
-  constructor(private router: Router, private fb: FormBuilder, private updateUserService: UpdateUserService, private getUserService: GetUserService) {
+  constructor(private router: Router, private fb: FormBuilder, private updateUserService: UpdateUserService, private getUserService: GetUserService, private toastr: ToastrService) {
     this.updateUserForm = this.fb.group({
       email: ['', Validators.required],
       username: ['', Validators.required],
@@ -73,7 +74,6 @@ export class UpdateUserComponent {
 
       try {
         const response = await this.updateUserService.updateUser(newUserData);
-        console.log(response.json());
 
         if(response.status == 200)
         {
@@ -89,13 +89,28 @@ export class UpdateUserComponent {
           }
         }
 
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
+        }
+
+        if(response.status == 401 || response.status == 403)
+        {
+          this.router.navigate(['/signin']);
+        }
+
       } catch (error) {
         console.error('Update-user error: ', error);
       }
     }
     else
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 

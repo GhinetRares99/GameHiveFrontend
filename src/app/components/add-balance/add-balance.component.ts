@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { UpdateUserService } from '../../services/update-user.service';
 import { GetUserService } from '../../services/get-user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-balance',
@@ -15,7 +16,7 @@ export class AddBalanceComponent {
   addBalanceForm: FormGroup;
   @Output() close = new EventEmitter<void>();
 
-  constructor(private router: Router, private fb: FormBuilder, private updateUserService: UpdateUserService, private getUserService: GetUserService) {
+  constructor(private router: Router, private fb: FormBuilder, private updateUserService: UpdateUserService, private getUserService: GetUserService, private toastr: ToastrService) {
     this.addBalanceForm = this.fb.group({
       cardnumber: ['', [Validators.required, Validators.pattern('\\d{4} \\d{4} \\d{4} \\d{4}')]],
       cardholder: ['', [Validators.required, Validators.minLength(3)]],
@@ -38,10 +39,15 @@ export class AddBalanceComponent {
       {
         this.close.emit();
       }
+
+      if(response.status == 401 || response.status == 403)
+      {
+        this.router.navigate(['/signin']);
+      }
     }
     else 
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 

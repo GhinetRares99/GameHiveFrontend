@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUpService } from '../../services/sign-up.service';
 import { User } from '../../models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,7 @@ export class SignUpComponent {
   signUpForm: FormGroup;
   selectedFile: File | null = null;
 
-  constructor(private router: Router, private fb: FormBuilder, private signUpService: SignUpService) {
+  constructor(private router: Router, private fb: FormBuilder, private signUpService: SignUpService, private toastr: ToastrService) {
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -58,11 +59,20 @@ export class SignUpComponent {
 
       try {
         const response = await this.signUpService.signUpUser(userData);
-        console.log(response.json());
 
         if(response.status == 200)
         {
           this.router.navigate(['/after-sign-up']);
+        }
+
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
         }
 
       } catch (error) {
@@ -72,7 +82,7 @@ export class SignUpComponent {
     }
     else 
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangePasswordService } from '../../services/change-password.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -14,7 +15,7 @@ export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
   @Output() close = new EventEmitter<void>();
 
-  constructor(private router: Router, private fb: FormBuilder, private changePasswordService: ChangePasswordService) {
+  constructor(private router: Router, private fb: FormBuilder, private changePasswordService: ChangePasswordService, private toastr: ToastrService) {
     this.changePasswordForm = this.fb.group({
       newpassword: ['', [Validators.required, Validators.minLength(6)]],
     });
@@ -26,7 +27,6 @@ export class ChangePasswordComponent {
 
       try {
         const response = await this.changePasswordService.changePassword(changePasswordData);
-        console.log(response.json());
 
         if(response.status == 200)
         {
@@ -37,13 +37,28 @@ export class ChangePasswordComponent {
           this.router.navigate(['']);
         }
 
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
+        }
+
+        if(response.status == 401 || response.status == 403)
+        {
+          this.router.navigate(['/signin']);
+        }
+
       } catch (error) {
         console.error('Change-password error: ', error);
       }
     }
     else 
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 

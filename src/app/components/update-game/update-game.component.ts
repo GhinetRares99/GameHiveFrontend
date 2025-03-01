@@ -6,6 +6,7 @@ import { UpdateGameService } from '../../services/update-game.service';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../models';
 import { GetGameByNameService } from '../../services/get-game-by-name.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-game',
@@ -21,7 +22,7 @@ export class UpdateGameComponent {
   selectedFileTwo: File | null = null;
   selectedFileThree: File | null = null;
 
-  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private updateGameService: UpdateGameService, private getGameByNameService: GetGameByNameService) {
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private updateGameService: UpdateGameService, private getGameByNameService: GetGameByNameService, private toastr: ToastrService) {
     this.updateGameForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -106,11 +107,25 @@ export class UpdateGameComponent {
 
       try {
         const response = await this.updateGameService.updateGame(newGameData);
-        console.log(response.json());
 
         if(response.status == 200)
         {
           this.router.navigate(['/admin']);
+        }
+
+        if(response.status == 400)
+        {
+          const errorData = await response.json();
+          if (Array.isArray(errorData)) {
+            errorData.forEach((err: any) => {
+              this.toastr.error(err.errorMessage);
+            });
+          }
+        }
+
+        if(response.status == 401 || response.status == 403)
+        {
+          this.router.navigate(['/signin']);
         }
 
       } catch (error) {
@@ -119,7 +134,7 @@ export class UpdateGameComponent {
     }
     else
     {
-      window.alert("Invalid data!");
+      this.toastr.error("Invalid data!");
     }
   }
 
