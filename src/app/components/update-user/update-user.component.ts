@@ -85,7 +85,7 @@ export class UpdateUserComponent {
           }
           else
           {
-            this.router.navigate(['/admin']);
+            this.close.emit();
           }
         }
 
