@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+
 .account-container {
     margin-top: 100px;
     background-color: rgb(31, 38, 66);
@@ -19,14 +21,14 @@
 }
 
 .username {
-    color: white;
+    color: $white_color_variable;
     font-style: italic;
     font-size: x-large;
     font-weight: 700;
 }
 
 .account-details {
-    color: white;
+    color: $white_color_variable;
     font-size: medium;
 }
 
@@ -62,8 +64,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    color: white;
-    background-color: darkgreen;
+    color: $white_color_variable;
+    background-color: $darkgreen_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
     width: 60%;
@@ -78,8 +80,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    color: white;
-    background-color: darkgreen;
+    color: $white_color_variable;
+    background-color: $darkgreen_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
     width: 60%;
@@ -94,8 +96,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    color: white;
-    background-color: darkgreen;
+    color: $white_color_variable;
+    background-color: $darkgreen_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
     width: 60%;
@@ -110,8 +112,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    color: white;
-    background-color: darkred;
+    color: $white_color_variable;
+    background-color: $darkred_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
     width: 60%;

@@ -1,5 +1,7 @@
+@import '../../../styles.scss';
+
 #title-update-user-admin {
-    color: white;
+    color: $white_color_variable;
     font-family: Trebuchet MS;
     font-style: italic;
     text-align: center;
@@ -16,7 +18,7 @@
 }
 
 label {
-    color: white;
+    color: $white_color_variable;
 }
 
 .form-group {
@@ -35,8 +37,8 @@ label {
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkgreen;
-    color: white;
+    background-color: $darkgreen_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 
@@ -51,8 +53,8 @@ label {
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkred;
-    color: white;
+    background-color: $darkred_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 

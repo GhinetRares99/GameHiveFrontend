@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+
 #animatedGallery {
     margin-top: 20px;
     margin-left: auto;
@@ -81,7 +83,7 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    color: white;
+    color: $white_color_variable;
     background-color: rgb(76, 118, 145);
     font-size: medium;
     transition-duration: 0.3s;
@@ -96,8 +98,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkgreen;
-    color: white;
+    background-color: $darkgreen_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 

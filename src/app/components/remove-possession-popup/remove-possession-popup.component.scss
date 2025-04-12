@@ -1,5 +1,7 @@
+@import '../../../styles.scss';
+
 #title-remove-possession-popup {
-    color: white;
+    color: $white_color_variable;
     font-family: Trebuchet MS;
     font-style: italic;
     text-align: center;
@@ -16,7 +18,7 @@
 }
 
 #warning-text {
-    color: white;
+    color: $white_color_variable;
     font-family: Trebuchet MS;
     font-style: italic;
     text-align: center;
@@ -32,8 +34,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkgreen;
-    color: white;
+    background-color: $darkgreen_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 
@@ -48,8 +50,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkred;
-    color: white;
+    background-color: $darkred_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 

@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+
 #title-update-game {
     font-family: Trebuchet MS;
     font-style: italic;
@@ -30,8 +32,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkgreen;
-    color: white;
+    background-color: $darkgreen_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 
@@ -46,8 +48,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkred;
-    color: white;
+    background-color: $darkred_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 

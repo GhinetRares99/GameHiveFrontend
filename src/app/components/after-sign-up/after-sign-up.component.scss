@@ -1,5 +1,7 @@
+@import '../../../styles.scss';
+
 #title-after-sign-up {
-    color: white;
+    color: $white_color_variable;
     font-family: Trebuchet MS;
     font-style: italic;
     text-align: center;
@@ -16,7 +18,7 @@
 }
 
 .after-sign-up-text {
-    color: white;
+    color: $white_color_variable;
     font-size: medium;
     margin-top: 30px;
     text-align: center;
@@ -32,8 +34,8 @@
     outline: none;
     cursor: pointer;
     padding: 10px;
-    background-color: darkgreen;
-    color: white;
+    background-color: $darkgreen_color_variable;
+    color: $white_color_variable;
     font-size: medium;
     transition-duration: 0.3s;
 
