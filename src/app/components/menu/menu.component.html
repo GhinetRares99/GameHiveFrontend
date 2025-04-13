@@ -10,7 +10,7 @@
         <button class="sign-up-button" (click)="navigateToSignUp()">SIGN UP</button>
     </div>
     <div *ngIf="userToken != null" class="div-three">
-        <button class="account-button" (click)="navigateToAccount()">{{user?.username}} <img class="menu-pfp" [src]="'user-images/' + user?.profilePic"></button>
+        <button class="account-button" (click)="navigateToAccount()" *ngIf="user">{{user.username}} <img class="menu-pfp" [src]="'user-images/' + user.profilePic"></button>
         <button class="sign-out-button" (click)="signOut()">SIGN OUT</button>
     </div>
 </div>

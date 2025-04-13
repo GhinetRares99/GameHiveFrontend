@@ -4,4 +4,6 @@ import { config } from './app/app.config.server';
 
 const bootstrap = () => bootstrapApplication(AppComponent, config);
 
+(process.env as any)['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 export default bootstrap;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MenuComponent } from "../menu/menu.component";
 import { Router } from '@angular/router';
 import { GetUserService } from '../../services/get-user.service';
@@ -8,6 +8,7 @@ import { ChangePasswordComponent } from '../change-password/change-password.comp
 import { CommonModule } from '@angular/common';
 import { AddBalanceComponent } from "../add-balance/add-balance.component";
 import { UpdateUserComponent } from "../update-user/update-user.component";
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-account',
@@ -23,14 +24,16 @@ export class AccountComponent {
   user: User | null | undefined;
   userToken: string | null | undefined;
 
-  constructor(private router: Router, private getUserService: GetUserService, private deleteUserService: DeleteUserService) {}
+  constructor(private router: Router, private getUserService: GetUserService, private deleteUserService: DeleteUserService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   async ngOnInit(): Promise<void> {
-    this.userToken = sessionStorage.getItem("authToken");
+    if (isPlatformBrowser(this.platformId)) {
+      this.userToken = sessionStorage.getItem("authToken");
 
-    if(this.userToken != null && this.userToken != undefined)
-    {
-       this.user = await this.getUserService.getUser();
+      if(this.userToken != null && this.userToken != undefined)
+      {
+        this.user = await this.getUserService.getUser();
+      }
     }
   }
 

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetUserService } from '../../services/get-user.service';
 import { User } from '../../models';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-menu',
@@ -18,15 +18,17 @@ export class MenuComponent {
   userToken: string | null | undefined;
   user: User | null | undefined;
 
-  constructor(private router: Router, private getUserService: GetUserService) {}
+  constructor(private router: Router, private getUserService: GetUserService, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   async ngOnInit(): Promise<void> {
-    this.userRole = sessionStorage.getItem("role");
-    this.userToken = sessionStorage.getItem("authToken");
+    if (isPlatformBrowser(this.platformId)) {
+      this.userRole = sessionStorage.getItem("role");
+      this.userToken = sessionStorage.getItem("authToken");
 
-    if(this.userToken != null && this.userToken != undefined)
-    {
-       this.user = await this.getUserService.getUser();
+      if(this.userToken != null && this.userToken != undefined)
+      {
+        this.user = await this.getUserService.getUser();
+      }
     }
   }
 

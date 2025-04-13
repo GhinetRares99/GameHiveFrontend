@@ -1,15 +1,15 @@
 <app-menu></app-menu>
-<div class="account-container">
+<div class="account-container" *ngIf="user">
     <div class="account-div-one">
-        <img [src]="'user-images/' + user?.profilePic" class="user-image">
-        <p class="username">{{user?.username}}</p>
+        <img [src]="'user-images/' + user.profilePic" class="user-image">
+        <p class="username">{{user.username}}</p>
     </div>
     <div class="account-div-two">
-        <p class="account-details">Email: {{user?.email}}</p>
-        <p class="account-details">Country: {{user?.countryOfResidence}}</p>
-        <p class="account-details">Balance: {{user?.balance}}€</p>
-        <p class="account-details">Role: {{user?.role}}</p>
-        <p class="account-details">Status: {{user?.status}}</p>
+        <p class="account-details">Email: {{user.email}}</p>
+        <p class="account-details">Country: {{user.countryOfResidence}}</p>
+        <p class="account-details">Balance: {{user.balance}}€</p>
+        <p class="account-details">Role: {{user.role}}</p>
+        <p class="account-details">Status: {{user.status}}</p>
     </div>
     <div class="account-div-three">
         <button class="update-user-button" (click)="showUpdateUser()">Update</button>
