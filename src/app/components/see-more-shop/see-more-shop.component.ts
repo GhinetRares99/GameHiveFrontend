@@ -9,6 +9,7 @@ import { UpdateUserService } from '../../services/update-user.service';
 import { GetUserService } from '../../services/get-user.service';
 import { GetUserGamesService } from '../../services/get-user-games.service';
 import { AddPossessionService } from '../../services/add-possession.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-see-more-shop',
@@ -34,7 +35,8 @@ export class SeeMoreShopComponent {
     private updateUserService: UpdateUserService,
     private getUserService: GetUserService,
     private getUserGamesService: GetUserGamesService,
-    private addPossessionService: AddPossessionService) {}
+    private addPossessionService: AddPossessionService,
+    private toastr: ToastrService) {}
 
   async ngOnInit(): Promise<void> {
     const gameName = this.route.snapshot.paramMap.get('gameName');
@@ -94,7 +96,7 @@ export class SeeMoreShopComponent {
     else if (this.game && this.user)
     {
       if (this.user.balance <= this.game.price) {
-        window.alert("You don't have enough balance to buy this game! You can add more from your account page!");
+        this.toastr.error("You don't have enough balance to buy this game! You can add more from your account page!");
       }
       else
       {
