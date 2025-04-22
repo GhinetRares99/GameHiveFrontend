@@ -1,0 +1,22 @@
+@import '../../../styles.scss';
+
+.phrase-container {
+    display: flex;
+    text-align: center;
+    margin-top: 60px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.phrase {
+    color: $white_color_variable;
+    font-weight: bold;
+}
+
+.side-icon {
+    height: 50px;
+    width: 50px;
+}
