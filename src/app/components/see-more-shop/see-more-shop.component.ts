@@ -95,7 +95,7 @@ export class SeeMoreShopComponent {
     }
     else if (this.game && this.user)
     {
-      if (this.user.balance <= this.game.price) {
+      if (this.user.balance < this.game.price) {
         this.toastr.error("You don't have enough balance to buy this game! You can add more from your account page!");
       }
       else
