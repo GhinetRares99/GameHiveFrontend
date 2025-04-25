@@ -15,6 +15,7 @@ import { UpdateTrophyComponent } from './components/update-trophy/update-trophy.
 import { UpdateGameComponent } from './components/update-game/update-game.component';
 import { UpdateUserAdminComponent } from './components/update-user-admin/update-user-admin.component';
 import { SeeMoreShopComponent } from './components/see-more-shop/see-more-shop.component';
+import { signInGuard } from './guards/sign-in.guard';
 
 export const routes: Routes = [
     {
@@ -40,6 +41,7 @@ export const routes: Routes = [
     {
         path: 'see-more/:gameName',
         component: SeeMoreComponent,
+        canActivate: [signInGuard],
     },
     {
         path: 'see-more-shop/:gameName',
@@ -78,9 +80,11 @@ export const routes: Routes = [
     {
         path: 'my-games',
         component: MyGamesComponent,
+        canActivate: [signInGuard],
     },
     {
         path: 'account',
         component: AccountComponent,
+        canActivate: [signInGuard],
     },
 ];
